@@ -106,11 +106,71 @@ section {
     padding: 20px;
     flex: 1 1 300px;
     box-shadow: 0 0 15px rgba(195,143,255,0.4);
+    position: relative;
+    max-height: 220px; /* altura inicial */
+    overflow: hidden;
+    transition: all 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.about-personal h3, .about-education h3 {
-    color: #c38fff;
-    margin-bottom: 10px;
+/* Texto do bloco */
+.about-personal p, .about-education p {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Botão dentro da caixa */
+.ver-mais {
+    align-self: flex-end;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s;
+    cursor: pointer;
+    background: #6a0dad;
+    border: none;
+}
+
+/* Efeito estilo projetos */
+.ver-mais::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(195,143,255,0.3);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.ver-mais:hover::before {
+    left: 100%;
+}
+
+.about-personal.expanded .ver-mais,
+.about-education.expanded .ver-mais {
+    background: #c70039;
+}
+
+/* Estado expandido */
+.about-personal.expanded, .about-education.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80vh;
+    max-width: 700px;
+    width: 90%;
+    z-index: 2000;
+    overflow-y: auto;
+    padding-bottom: 50px;
 }
 
 /* Projetos */
@@ -276,12 +336,12 @@ html {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 2rem; /* tamanho menor */
+    font-size: 2rem;
     color: #c38fff;
     cursor: pointer;
     transition: transform 0.3s, color 0.3s, opacity 0.3s;
     z-index: 1000;
-    opacity: 0.3; /* transparente até hover */
+    opacity: 0.3;
 }
 
 .seta-cima {
@@ -294,7 +354,7 @@ html {
 
 .seta-cima:hover, .seta-baixo:hover {
     color: #ff70a6;
-    opacity: 1; /* aparece ao hover */
+    opacity: 1;
     transform: translateX(-50%) scale(1.2);
 }
 
