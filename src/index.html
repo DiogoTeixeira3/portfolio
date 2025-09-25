@@ -8,46 +8,62 @@
 </head>
 <body>
     <header>
-        <h1>Diogo Gouveia Teixeira</h1>
-        <p>Futuro Engenheiro Informático</p>
+        <h1>Hi everyone, I'm Diogo Teixeira.</h1>
+        <p>Future software engineer from Lisbon, Portugal. Currently in the last year of Software Engineering in ISEL (Instituto Superior de Engenharia de Lisboa), with the goal of becoming a specialist in front-end and back-end software development.</p>
         <nav>
             <ul>
-                <li><a href="#sobre">Sobre Mim</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#About">About Me</a></li>
+                <li><a href="#Projects">Projects</a></li>
+                <li><a href="#Contact">Contact Me</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <!-- Sobre Mim -->
-        <section id="sobre">
-            <h2>Sobre Mim</h2>
-            <p>Sou um estudante de Engenharia Informática apaixonado por programação e desenvolvimento de soluções criativas. Este portfólio serve como complemento ao meu currículo, mostrando os meus projetos e competências.</p>
-        </section>
+        <!-- About Me -->
+        <section id="About">
+            <h2>About Me</h2>
+            <div class="about-container">
+                <!-- Parte Pessoal -->
+                <div class="about-personal">
+                    <h3>Personal</h3>
+                    <p>Sou natural de Lisboa, Portugal, com uma paixão por tecnologia e programação. Sempre curioso e motivado por desafios, gosto de explorar novas ideias e soluções criativas. Acredito no trabalho em equipa e na aprendizagem contínua, com foco em inovação e excelência.</p>
+                </div>
 
-        <!-- Projetos -->
-        <section id="projetos">
-            <h2>Projetos</h2>
-            <div id="projetos-container">
-                <!-- Projetos adicionados dinamicamente via JavaScript -->
+                <!-- Parte Educacional -->
+                <div class="about-education">
+                    <h3>Education</h3>
+                    <p>Atualmente sou estudante de Engenharia Informática e Computadores no ISEL, Lisboa. Tenho desenvolvido competências em programação, desenvolvimento de software, sistemas e tecnologias web, com interesse em me tornar um especialista em front-end e back-end development.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Contacto -->
-        <section id="contacto">
-            <h2>Contacto</h2>
+        <!-- Projects -->
+        <section id="Projects">
+            <h2>Projects</h2>
+            <div id="projetos-container">
+                <!-- Projetos adicionados dinamicamente via JS -->
+            </div>
+        </section>
+
+        <!-- Contact Me -->
+        <section id="Contact">
+            <h2>Contact Me</h2>
             <form id="contactForm">
-                <input type="text" id="nome" placeholder="Nome" required>
+                <input type="text" id="nome" placeholder="Name" required>
                 <input type="email" id="email" placeholder="Email" required>
-                <textarea id="mensagem" placeholder="Mensagem" required></textarea>
-                <button type="submit">Enviar</button>
+                <textarea id="mensagem" placeholder="Message" required></textarea>
+                <button type="submit">Send</button>
             </form>
         </section>
     </main>
 
+    <!-- Setas fixas topo/fundo -->
+    <span class="seta-cima" data-target="header">&#x25B2;</span>
+    <span class="seta-baixo" data-target="#About">&#x25BC;</span>
+
     <footer>
-        <p>&copy; 2025 Diogo Teixeira. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Diogo Gouveia Teixeira</p>
     </footer>
 
     <script src="script.js"></script>

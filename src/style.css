@@ -3,88 +3,303 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 body {
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+    color: #eee;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
 }
 
+/* Header */
 header {
-    background-color: #007BFF;
-    color: white;
-    padding: 30px 20px;
     text-align: center;
+    padding: 40px 20px;
+    background: #1a0d2e;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+header h1 {
+    color: #c38fff;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 header p {
+    color: #aaa;
     font-style: italic;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 header nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 header nav ul li a {
-    color: white;
+    display: inline-block;
     text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: #6a0dad;
+    color: #fff;
     font-weight: bold;
-    transition: color 0.3s;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+header nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,112,166,0.3);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+header nav ul li a:hover::before {
+    left: 100%;
 }
 
 header nav ul li a:hover {
-    color: #FFD700;
+    box-shadow: 0 0 15px rgba(255,112,166,0.7);
 }
 
+/* Main Sections */
 main {
-    padding: 20px;
-    max-width: 900px;
+    max-width: 1100px;
     margin: auto;
+    padding: 0 20px;
 }
 
 section {
-    margin-bottom: 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
-#projetos-container .projeto {
-    background-color: white;
+/* About Me */
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.about-personal, .about-education {
+    background: #1e0d3f;
+    border-radius: 15px;
+    padding: 20px;
+    flex: 1 1 300px;
+    box-shadow: 0 0 15px rgba(195,143,255,0.4);
+}
+
+.about-personal h3, .about-education h3 {
+    color: #c38fff;
+    margin-bottom: 10px;
+}
+
+/* Projetos */
+#projetos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.projeto {
+    background: #1e0d3f;
+    border-radius: 15px;
+    width: 280px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(195,143,255,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.projeto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba(255,112,166,0.8);
+}
+
+.projeto img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.projeto-content {
     padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    flex: 1;
 }
 
+.projeto h3 {
+    color: #c38fff;
+    margin-bottom: 10px;
+}
+
+.linguagens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.linguagem {
+    background: #5a189a;
+    color: #fff;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    box-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+
+.projeto-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.projeto-buttons a {
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.projeto-buttons a::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(195,143,255,0.3);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.projeto-buttons a:hover::before {
+    left: 100%;
+}
+
+.projeto-buttons a:nth-child(1) {
+    background: #6a0dad;
+}
+
+.projeto-buttons a.pdf {
+    background: #c70039;
+}
+
+/* Formulário */
 form input, form textarea {
     display: block;
     width: 100%;
     margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #2b1a3f;
+    color: #fff;
+    font-size: 1rem;
 }
 
 form button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
+    padding: 12px 25px;
+    background: #c38fff;
+    color: #fff;
+    font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(195,143,255,0.6);
+    transition: 0.3s;
 }
 
 form button:hover {
-    background-color: #0056b3;
+    box-shadow: 0 0 20px rgba(255,112,166,0.9);
 }
 
+/* Footer */
 footer {
     text-align: center;
     padding: 20px 0;
-    background-color: #222;
-    color: white;
+    background: #1a0d2e;
+    color: #bbb;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .projeto {
+        width: 100%;
+    }
+    .about-personal, .about-education {
+        flex: 1 1 100%;
+    }
+}
+
+/* Espaçamento entre título de seção e conteúdo */
+section h2 {
+    margin-bottom: 30px;
+    color: #c38fff;
+    font-size: 2rem;
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Setas fixas topo/fundo */
+.seta-cima, .seta-baixo {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem; /* tamanho menor */
+    color: #c38fff;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s, opacity 0.3s;
+    z-index: 1000;
+    opacity: 0.3; /* transparente até hover */
+}
+
+.seta-cima {
+    top: 20px;
+}
+
+.seta-baixo {
+    bottom: 20px;
+}
+
+.seta-cima:hover, .seta-baixo:hover {
+    color: #ff70a6;
+    opacity: 1; /* aparece ao hover */
+    transform: translateX(-50%) scale(1.2);
+}
+
+/* Esconder setas no header */
+body.header-view .seta-cima,
+body.header-view .seta-baixo {
+    display: none;
 }
