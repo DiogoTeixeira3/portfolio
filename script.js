@@ -1,6 +1,5 @@
-// src/script.js
-// Projetos de exemplo
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Projetos ---
   const projetos = [
     { nome: "Projeto 1", linguagens: ["HTML", "CSS", "JS"], repo: "#", pdf: "#" },
     { nome: "Projeto 2", linguagens: ["Java", "SQL"], repo: "#", pdf: "#" },
@@ -30,19 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Navegação suave
+  // --- Navegação suave ---
   document.querySelectorAll('header nav ul li a').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(updateSetas, 450);
-      }
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(updateSetas, 450);
     });
   });
 
-  // Setas
+  // --- Setas ---
   const secoes = ['header', 'About', 'Projects', 'Contact'];
   const setaCima = document.querySelector('.seta-cima');
   const setaBaixo = document.querySelector('.seta-baixo');
@@ -52,9 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let current = 'header';
     secoes.forEach(sec => {
       const el = sec === 'header' ? document.querySelector('header') : document.getElementById(sec);
-      if (el && el.offsetTop <= scrollPos) {
-        current = sec;
-      }
+      if (el && el.offsetTop <= scrollPos) current = sec;
     });
     return current;
   }
@@ -62,13 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateSetas() {
     const current = getCurrentSection();
     if (current === 'header') {
-      setaCima.style.display = 'none';
-      setaBaixo.style.display = 'none';
+      setaCima.style.display = 'none'; setaBaixo.style.display = 'none';
       document.body.classList.add('header-view');
       return;
-    } else {
-      document.body.classList.remove('header-view');
-    }
+    } else document.body.classList.remove('header-view');
     const idx = secoes.indexOf(current);
     setaCima.style.display = idx <= 0 ? 'none' : 'block';
     if (idx > 0) setaCima.dataset.target = secoes[idx - 1];
@@ -101,22 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
       block.appendChild(btn);
     }
     btn.type = 'button';
-    btn.style.alignSelf = "flex-end";
-    btn.style.marginTop = "auto";
-
     btn.addEventListener('click', () => {
-      if (block.classList.contains('expanded')) {
-        collapseBlock(block);
-      } else {
-        expandBlock(block);
-      }
+      if (block.classList.contains('expanded')) collapseBlock(block);
+      else expandBlock(block);
     });
-
-    // Forçar botão a aparecer se houver overflow
-    const p = block.querySelector('p');
-    if (p && p.scrollHeight > p.clientHeight + 1) {
-      btn.style.display = 'block';
-    }
   });
 
   function expandBlock(block) {
@@ -125,12 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     block.classList.add('expanded');
     if (btn) btn.textContent = 'Close';
     overlay = document.createElement('div');
-    Object.assign(overlay.style, {
-      position: 'fixed',
-      inset: '0',
-      background: 'rgba(0,0,0,0.6)',
-      zIndex: '1990'
-    });
+    Object.assign(overlay.style, { position: 'fixed', inset: '0', background: 'rgba(0,0,0,0.6)', zIndex: '1990' });
     document.body.appendChild(overlay);
     document.body.style.overflow = 'hidden';
     overlay.addEventListener('click', () => collapseBlock(block), { once: true });
@@ -142,10 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = block.querySelector('.ver-mais');
     block.classList.remove('expanded');
     if (btn) btn.textContent = 'More';
-    if (overlay) {
-      overlay.remove();
-      overlay = null;
-    }
+    if (overlay) { overlay.remove(); overlay = null; }
     document.body.style.overflow = '';
     block.style.zIndex = '';
     currentExpanded = null;
