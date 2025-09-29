@@ -122,4 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
     block.style.zIndex = '';
     currentExpanded = null;
   }
+
+  // --- Dark/Light Mode ---
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '🌞';
+  });
+
 });

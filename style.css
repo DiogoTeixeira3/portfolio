@@ -10,6 +10,51 @@ body {
     background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
     color: #eee;
     line-height: 1.6;
+    transition: background 0.5s, color 0.5s;
+}
+
+/* Dark/Light Mode */
+body.light-mode {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    color: #111;
+}
+
+body.light-mode header {
+    background: #ffffff;
+}
+
+body.light-mode header nav ul li a {
+    color: #fff;
+    background: #6a0dad;
+}
+
+body.light-mode .about-personal,
+body.light-mode .about-education,
+body.light-mode .about-skills,
+body.light-mode .projeto,
+body.light-mode .contact-card {
+    background: #f0f0f0;
+    color: #111;
+}
+
+body.light-mode .ver-mais {
+    background: #6a0dad;
+}
+
+body.light-mode form input,
+body.light-mode form textarea {
+    background: #e5e5e5;
+    color: #111;
+}
+
+body.light-mode form input:focus,
+body.light-mode form textarea:focus {
+    background: #d1d1d1;
+}
+
+body.light-mode form button {
+    background: linear-gradient(135deg, #6a0dad, #c70039);
+    color: #fff;
 }
 
 /* Header */
@@ -22,6 +67,7 @@ header {
     justify-content: center;
     align-items: center;
     padding: 0 20px;
+    transition: background 0.5s;
 }
 
 .header-hero {
@@ -87,6 +133,29 @@ header nav ul li a:hover {
     box-shadow: 0 0 15px rgba(255,112,166,0.7);
 }
 
+/* Botão Dark/Light Mode */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s, background 0.3s;
+    z-index: 1500;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
 /* Main Sections */
 main {
     max-width: 1100px;
@@ -111,8 +180,7 @@ section {
     margin-top: 20px;
 }
 
-/* Personal & Education Cards */
-.about-personal, .about-education {
+.about-personal, .about-education, .about-skills {
     background: #1e0d3f;
     border-radius: 15px;
     padding: 20px;
@@ -121,11 +189,18 @@ section {
     position: relative;
     max-height: 220px;
     overflow: hidden;
-    transition: all 0.6s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding-bottom: 40px;
+}
+
+.about-personal:hover,
+.about-education:hover,
+.about-skills:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 0 40px rgba(255,112,166,0.8);
 }
 
 .about-personal h3,
@@ -197,6 +272,7 @@ section {
     z-index: 2000;
     overflow-y: auto;
     padding-bottom: 50px;
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
 }
 
 /* Skills Box */
@@ -338,33 +414,108 @@ section {
     background: #c70039;
 }
 
-/* Formulário */
+/* Contact Me */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.contact-card {
+    background: #1e0d3f;
+    border-radius: 20px;
+    padding: 30px;
+    flex: 1 1 400px;
+    box-shadow: 0 0 25px rgba(195,143,255,0.4);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 50px rgba(255,112,166,0.6);
+}
+
+form .form-group {
+    margin-bottom: 20px;
+}
+
 form input, form textarea {
-    display: block;
     width: 100%;
-    margin-bottom: 10px;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 15px 20px;
+    border-radius: 12px;
     border: none;
     background: #2b1a3f;
     color: #fff;
     font-size: 1rem;
-}
-
-form button {
-    padding: 12px 25px;
-    background: #c38fff;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(195,143,255,0.6);
     transition: 0.3s;
 }
 
+form input:focus, form textarea:focus {
+    outline: none;
+    background: #3a2670;
+    box-shadow: 0 0 10px rgba(255,112,166,0.5);
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form button {
+    padding: 15px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6a0dad, #c70039);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
 form button:hover {
-    box-shadow: 0 0 20px rgba(255,112,166,0.9);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,112,166,0.7);
+}
+
+.social-card h3 {
+    color: #c38fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-buttons a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #2b1a3f;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.social-buttons a:hover {
+    transform: translateX(5px);
+    box-shadow: 0 0 20px rgba(255,112,166,0.5);
+}
+
+.social-buttons a img {
+    width: 28px;
+    height: 28px;
 }
 
 /* Footer */
@@ -373,42 +524,6 @@ footer {
     padding: 20px 0;
     background: #1a0d2e;
     color: #bbb;
-}
-
-/* Responsividade */
-@media (max-width: 900px) {
-    .header-hero {
-        flex-direction: column;
-        text-align: center;
-        gap: 25px;
-    }
-}
-
-@media (max-width: 600px) {
-    header nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .projeto {
-        width: 100%;
-    }
-
-    .about-personal, .about-education, .about-skills {
-        flex: 1 1 100%;
-    }
-}
-
-/* Espaçamento entre título de seção e conteúdo */
-section h2 {
-    margin-bottom: 30px;
-    color: #c38fff;
-    font-size: 2rem;
-}
-
-/* Scroll suave */
-html {
-    scroll-behavior: smooth;
 }
 
 /* Setas fixas topo/fundo */
@@ -441,4 +556,51 @@ html {
 body.header-view .seta-cima,
 body.header-view .seta-baixo {
     display: none;
+}
+
+/* Espaçamento entre título de seção e conteúdo */
+section h2 {
+    margin-bottom: 30px;
+    color: #c38fff;
+    font-size: 2rem;
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .header-hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .social-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding-top: 0;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .projeto {
+        width: 100%;
+    }
+    .about-personal, .about-education, .about-skills {
+        flex: 1 1 100%;
+    }
+    .contact-card {
+        width: 90%;
+    }
 }
