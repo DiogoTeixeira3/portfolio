@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!btn) {
       btn = document.createElement('button');
       btn.className = 'ver-mais';
-      btn.textContent = 'Ver mais';
+      btn.textContent = 'More';
       block.appendChild(btn);
     }
     btn.type = 'button';
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentExpanded && currentExpanded !== block) collapseBlock(currentExpanded);
     const btn = block.querySelector('.ver-mais');
     block.classList.add('expanded');
-    if (btn) btn.textContent = 'Fechar';
+    if (btn) btn.textContent = 'Close';
     overlay = document.createElement('div');
     Object.assign(overlay.style, {
       position: 'fixed',
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function collapseBlock(block) {
     const btn = block.querySelector('.ver-mais');
     block.classList.remove('expanded');
-    if (btn) btn.textContent = 'Ver mais';
+    if (btn) btn.textContent = 'More';
     if (overlay) {
       overlay.remove();
       overlay = null;
