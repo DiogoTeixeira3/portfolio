@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- Projetos ---
   const projetos = [
-    { nome: "Projeto 1", linguagens: ["HTML", "CSS", "JS"], repo: "#", pdf: "#" },
+    { nome: "Checkers", linguagens: ["Kotlin", "Compose"], repo: "#", pdf: "#" },
     { nome: "Projeto 2", linguagens: ["Java", "SQL"], repo: "#", pdf: "#" },
     { nome: "Projeto 3", linguagens: ["Python", "Flask"], repo: "#", pdf: "#" }
   ];

@@ -59,7 +59,7 @@ body.light-mode form button {
 
 /* Header */
 header {
-    background: #1a0d2e;
+    background: linear-gradient(145deg, #69019c, #000);
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     height: 100vh;
     display: flex;
