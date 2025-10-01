@@ -6,6 +6,12 @@
     font-family: 'Orbitron', sans-serif;
 }
 
+:root{
+    --arrow-safe-space: 160px; /* espaço reservado no fundo para a seta */
+    --gap-projects: 30px;
+}
+
+/* Body */
 body {
     background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
     color: #eee;
@@ -318,23 +324,43 @@ section {
     }
 }
 
-/* Projetos */
+/* Projetos - garantias extras para não colar na seta */
+#Projects {
+    /* Padding adicional para que a secção termine acima da seta */
+    padding-bottom: calc(var(--arrow-safe-space) + 20px);
+}
+
 #projetos-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: var(--gap-projects);
     justify-content: center;
+    position: relative;
 }
 
+/* spacer for the last-row safe area (guarantees visual gap independent do layout flex) */
+#projetos-container::after {
+    content: "";
+    display: block;
+    height: var(--arrow-safe-space);
+    width: 100%;
+    pointer-events: none;
+}
+
+/* Project card */
 .projeto {
     background: #1e0d3f;
     border-radius: 15px;
-    width: 280px;
+    flex: 1 1 calc(33.333% - var(--gap-projects));
+    max-width: 300px;
+    margin-bottom: 0; /* usamos spacer ::after para controlar o espaço final */
     overflow: hidden;
     box-shadow: 0 0 20px rgba(195,143,255,0.5);
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
+    position: relative; /* evita stacking context imprevisível sobre a seta */
+    z-index: 1;
 }
 
 .projeto:hover {
@@ -526,7 +552,7 @@ footer {
     color: #bbb;
 }
 
-/* Setas fixas topo/fundo */
+/* Setas fixas topo/fundo - z-index aumentado para garantir visibilidade */
 .seta-cima, .seta-baixo {
     position: fixed;
     left: 50%;
@@ -535,16 +561,18 @@ footer {
     color: #c38fff;
     cursor: pointer;
     transition: transform 0.3s, color 0.3s, opacity 0.3s;
-    z-index: 1000;
-    opacity: 0.3;
+    z-index: 99999; /* MUITO alto para garantir que ficam acima dos cartões */
+    opacity: 0.9;
+    pointer-events: auto;
 }
 
 .seta-cima {
     top: 20px;
 }
 
+/* usa safe-area-inset para telemóveis com notch */
 .seta-baixo {
-    bottom: 20px;
+    bottom: calc(env(safe-area-inset-bottom, 20px) + 12px);
 }
 
 .seta-cima:hover, .seta-baixo:hover {
@@ -560,7 +588,7 @@ body.header-view .seta-baixo {
 
 /* Espaçamento entre título de seção e conteúdo */
 section h2 {
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     color: #c38fff;
     font-size: 2rem;
 }
@@ -587,6 +615,15 @@ html {
         padding-top: 0;
         gap: 10px;
     }
+    
+    /* 2 colunas em tablets / ecrãs intermédios */
+    .projeto {
+        flex: 1 1 calc(50% - var(--gap-projects));
+        max-width: 460px;
+    }
+
+    /* reduzir o spacer em ecrãs pequenos */
+    :root { --arrow-safe-space: 120px; }
 }
 
 @media (max-width: 600px) {
@@ -595,7 +632,8 @@ html {
         gap: 10px;
     }
     .projeto {
-        width: 100%;
+        flex: 1 1 100%;
+        max-width: 100%;
     }
     .about-personal, .about-education, .about-skills {
         flex: 1 1 100%;
@@ -603,4 +641,7 @@ html {
     .contact-card {
         width: 90%;
     }
+
+    /* diminuir ainda mais o spacer em telemóveis */
+    :root { --arrow-safe-space: 100px; }
 }

@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- Projetos ---
   const projetos = [
-    { nome: "Checkers", linguagens: ["Kotlin", "Compose"], repo: "#", pdf: "#" },
-    { nome: "Projeto 2", linguagens: ["Java", "SQL"], repo: "#", pdf: "#" },
-    { nome: "Projeto 3", linguagens: ["Python", "Flask"], repo: "#", pdf: "#" }
+    { nome: "Checkers", linguagens: ["Kotlin", "Compose"], repo: "https://github.com/DiogoTeixeira3/Checkers", pdf: "files/Checkers.pdf", img: "files/checkers.png" },
+    { nome: "Projeto 2", linguagens: ["Java", "SQL"], repo: "https://github.com/DiogoTeixeira3/projeto2", pdf: "files/projeto2.pdf", img: "files/projeto2.png" },
+    { nome: "Projeto 3", linguagens: ["Python", "Flask"], repo: "https://github.com/DiogoTeixeira3/projeto3", pdf: "files/projeto3.pdf", img: "files/projeto3.png" },
+    { nome: "Projeto 4", linguagens: ["C", "Assembly"], repo: "https://github.com/DiogoTeixeira3/projeto4", pdf: "files/projeto4.pdf", img: "files/projeto4.png" },
+    { nome: "Projeto 5", linguagens: ["React", "Node.js"], repo: "https://github.com/DiogoTeixeira3/projeto5", pdf: "files/projeto5.pdf", img: "files/projeto5.png" },
+    { nome: "Projeto 6", linguagens: ["MongoDB", "Express"], repo: "https://github.com/DiogoTeixeira3/projeto6", pdf: "files/projeto6.pdf", img: "files/projeto6.png" }
   ];
 
   const container = document.getElementById("projetos-container");
@@ -13,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement("div");
       div.classList.add("projeto");
       div.innerHTML = `
-        <img src="https://via.placeholder.com/280x150.png?text=${encodeURIComponent(p.nome)}" alt="${p.nome}">
+        <img src="${p.img || `https://via.placeholder.com/280x150.png?text=${encodeURIComponent(p.nome)}`}" alt="${p.nome}">
         <div class="projeto-content">
             <h3>${p.nome}</h3>
             <div class="linguagens">
